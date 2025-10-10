@@ -14,3 +14,7 @@ vim.opt.softtabstop = 4    -- Number of spaces that a <Tab> feels like while edi
 
 -- Style
 vim.opt.termguicolors = true -- Enables 24-bit RGB colors support
+
+-- Undotree
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
