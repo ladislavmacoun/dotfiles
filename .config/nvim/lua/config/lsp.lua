@@ -78,7 +78,12 @@ vim.lsp.config.jdtls = {
 	root_markers = { "pom.xml", "build.gradle", ".git" },
 }
 vim.lsp.config.kotlin_language_server = {
-	cmd = { "kotlin-language-server" },
+	cmd = {
+		"env",
+		"JAVA_HOME=" .. os.getenv("SDKMAN_CANDIDATES_DIR") .. "/java/21.0.8-amzn",
+		"PATH=" .. os.getenv("SDKMAN_CANDIDATES_DIR") .. "/java/21.0.8-amzn/bin:" .. os.getenv("PATH"),
+		"kotlin-language-server",
+	},
 	filetypes = { "kotlin" },
 	root_markers = { "settings.gradle", "settings.gradle.kts", "build.gradle", "build.gradle.kts", ".git" },
 }
