@@ -44,8 +44,11 @@ lsp_zero.on_attach(function(_, bufnr)
 	local keymap = vim.keymap.set
 
 	keymap("n", "gd", vim.lsp.buf.definition, opts)
+	keymap("n", "gI", vim.lsp.buf.implementation, opts)
+	keymap("n", "gD", vim.lsp.buf.type_definition, opts)
 	keymap("n", "K", vim.lsp.buf.hover, opts)
 	keymap("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
+	keymap("n", "<leader>dl", vim.diagnostic.setloclist, opts)
 	keymap("n", "<leader>vd", vim.diagnostic.open_float, opts)
 	keymap("n", "[d", vim.diagnostic.goto_next, opts)
 	keymap("n", "]d", vim.diagnostic.goto_prev, opts)

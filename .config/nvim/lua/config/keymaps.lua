@@ -4,6 +4,9 @@ vim.keymap.set("n", "<leader>p", ":bp<cr>")
 vim.keymap.set("n", "<leader>x", ":bd<cr>")
 vim.keymap.set("n", "<leader>ml", ":b#<cr>")
 
+-- closing buffer which shows interfaces after gI
+vim.keymap.set("n", "<leader>q", "<cmd>cclose<CR>", { desc = "Close Quickfix List", silent = true })
+
 -- yank to clipboard
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 -- yank line to clipboard
@@ -22,3 +25,7 @@ vim.keymap.set("n", "<leader>e", ":Neotree toggle<cr>")
 vim.keymap.set("n", "<leader>aa", ":AvanteAsk<CR>", { desc = "Ask Avante" })
 vim.keymap.set("n", "<leader>at", ":AvanteToggle<CR>", { desc = "Toggle Avante sidebar" })
 vim.keymap.set("n", "<leader>am", ":AvanteModels<CR>", { desc = "Show model list"})
+
+-- GitBlame
+vim.keymap.set("n", "<leader>gb", ":GitBlameToggle<CR>", { desc = "Toggle git blame messages preview" })
+
