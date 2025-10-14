@@ -32,6 +32,7 @@ return {
 			},
 		},
 	},
+
 	-- Git blame info
 	{
 		"f-person/git-blame.nvim",
