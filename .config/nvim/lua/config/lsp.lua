@@ -109,11 +109,7 @@ vim.lsp.config.kotlin_language_server = {
 
 -- 🐘 Groovy LSP with Jenkins support
 vim.lsp.config.groovyls = {
-	cmd = {
-		"java",
-		"-jar",
-		vim.fn.expand("~/.local/share/groovy-language-server/groovy-language-server-all.jar"),
-	},
+	cmd = { "groovy-language-server" },
 	filetypes = { "groovy" },
 	root_markers = { "Jenkinsfile", "build.gradle", "pom.xml", ".git" },
 	init_options = {
