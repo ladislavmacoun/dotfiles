@@ -14,6 +14,7 @@ require("mason-lspconfig").setup({
 		"kotlin_language_server",
 		"lua_ls",
 		"ts_ls",
+		"groovyls",
 	},
 	handlers = {
 		lsp_zero.default_setup,
@@ -46,6 +47,7 @@ lsp_zero.on_attach(function(_, bufnr)
 	keymap("n", "gd", vim.lsp.buf.definition, opts)
 	keymap("n", "gI", vim.lsp.buf.implementation, opts)
 	keymap("n", "gD", vim.lsp.buf.type_definition, opts)
+	keymap("n", "gr", vim.lsp.buf.references, opts)
 	keymap("n", "K", vim.lsp.buf.hover, opts)
 	keymap("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
 	keymap("n", "<leader>dl", vim.diagnostic.setloclist, opts)
@@ -89,6 +91,20 @@ vim.lsp.config.kotlin_language_server = {
 	},
 	filetypes = { "kotlin" },
 	root_markers = { "settings.gradle", "settings.gradle.kts", "build.gradle", "build.gradle.kts", ".git" },
+}
+
+-- 🐘 Groovy LSP with Jenkins support
+vim.lsp.config.groovyls = {
+	cmd = { "groovy-language-server" },
+	filetypes = { "groovy" },
+	root_markers = { "Jenkinsfile", "build.gradle", "pom.xml", ".git" },
+	init_options = {
+		groovy = {
+			jenkins = {
+				enabled = true,
+			},
+		},
+	},
 }
 
 -- TypeScript / React / Next.js
