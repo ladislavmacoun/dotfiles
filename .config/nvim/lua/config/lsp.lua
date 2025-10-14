@@ -8,13 +8,14 @@ lsp_zero.extend_lspconfig()
 require("mason").setup({})
 require("mason-lspconfig").setup({
 	ensure_installed = {
+		"clangd",
 		"gopls",
-		"rust_analyzer",
+		"groovyls",
 		"jdtls",
 		"kotlin_language_server",
 		"lua_ls",
+		"rust_analyzer",
 		"ts_ls",
-		"groovyls",
 	},
 	handlers = {
 		lsp_zero.default_setup,
@@ -69,6 +70,19 @@ vim.lsp.config.gopls = {
 	root_markers = { "go.work", "go.mod", ".git" },
 }
 
+-- ⚙️ C / C++ LSP
+vim.lsp.config.clangd = {
+	cmd = { "clangd", "--background-index", "--clang-tidy", "--completion-style=detailed", "--header-insertion=never" },
+	filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+	root_markers = { "compile_commands.json", "compile_flags.txt", ".git" },
+	capabilities = vim.lsp.protocol.make_client_capabilities(),
+	init_options = {
+		usePlaceholders = true,
+		completeUnimported = true,
+		clangdFileStatus = true,
+	},
+}
+
 -- 🦀 Rust LSP
 vim.lsp.config.rust_analyzer = {
 	cmd = { "rust-analyzer" },
@@ -95,7 +109,11 @@ vim.lsp.config.kotlin_language_server = {
 
 -- 🐘 Groovy LSP with Jenkins support
 vim.lsp.config.groovyls = {
-	cmd = { "groovy-language-server" },
+	cmd = {
+		"java",
+		"-jar",
+		vim.fn.expand("~/.local/share/groovy-language-server/groovy-language-server-all.jar"),
+	},
 	filetypes = { "groovy" },
 	root_markers = { "Jenkinsfile", "build.gradle", "pom.xml", ".git" },
 	init_options = {
