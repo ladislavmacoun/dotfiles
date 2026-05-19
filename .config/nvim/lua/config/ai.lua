@@ -1,9 +1,6 @@
 local avante = require("avante")
 avante.setup({
-	provider = "claude",
-	model = "claude-sonnet-4-5",
-	temperature = 0.2,
-	max_tokens = 4000,
+	provider = "claude-code",
 	auto_apply_edits = false,
 	show_diff = true,
 })
